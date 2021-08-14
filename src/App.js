@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import MusicTable from './Components/MusicTable/MusicTable';
+import SongForm from './Components/SongForm/SongForm';
 
 class App extends Component {
     constructor(props) {
@@ -23,10 +24,16 @@ class App extends Component {
         });
     }
 
+    async addSong(song) {
+        let payload = song
+        await axios.post('http://127.0.0.1:8000/music/', payload);        
+    }
+
     render() {
         return (
             <React.Fragment>
                 <MusicTable songs={this.state.songs}/>
+                <SongForm addSong={this.addSong} refreshSongs={this.getSongs}/>
             </React.Fragment>
         )
     }
