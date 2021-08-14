@@ -30,7 +30,13 @@ class SongForm extends Component {
             release_date: this.state.release_date
         }
         this.props.addSong(song);
-        this.props.refreshSongs();
+        this.setState({
+            title: '',
+            artist: '',
+            album: '',
+            genre: '',
+            release_date: ''
+        });
     }
 
     render() {

@@ -16,6 +16,10 @@ class App extends Component {
         this.getSongs();
     }
 
+    componentDidUpdate() {
+        this.getSongs();
+    }
+
     async getSongs() {
         let response = await axios.get('http://127.0.0.1:8000/music/')
         let allSongs = response.data
@@ -33,7 +37,7 @@ class App extends Component {
         return (
             <React.Fragment>
                 <MusicTable songs={this.state.songs}/>
-                <SongForm addSong={this.addSong} refreshSongs={this.getSongs}/>
+                <SongForm addSong={this.addSong}/>
             </React.Fragment>
         )
     }
