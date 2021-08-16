@@ -2,18 +2,28 @@ import React from 'react';
 import './MusicTable.css';
 
 const MusicTable = (props) => {
-    const rows = props.songs.map((song) => {
-        return <tr key={song.id}>
-            <td>{song.id}</td><td>{song.title}</td><td>{song.artist}</td><td>{song.album}</td><td>{song.genre}</td><td>{song.release_date}</td></tr> 
-    })
-
     return (
         <div>
             <table>
                 <tr>
-                    <th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th><th>Release Date</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                    <th>Genre</th
+                    ><th>Release Date</th
+                    ><th></th>
                 </tr>
-                {rows}
+                {props.songs.map(songs => (
+                    <tr key={songs.id}>
+                        <td>{songs.title}</td>
+                        <td>{songs.artist}</td>
+                        <td>{songs.album}</td>
+                        <td>{songs.genre}</td>
+                        <td>{songs.release_date}</td>
+                        <td><button onClick={() => props.removeSong(songs.id)}>Delete</button></td>
+
+                    </tr>
+                ))}
             </table>
         </div>
     )

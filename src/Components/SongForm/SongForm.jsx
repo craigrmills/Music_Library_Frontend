@@ -44,7 +44,7 @@ class SongForm extends Component {
             <div>
                 <h3>Add New Song</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className="container">
                         <div>
                             <label>Title</label>
                             <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
