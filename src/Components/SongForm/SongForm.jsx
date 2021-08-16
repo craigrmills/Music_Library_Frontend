@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './SongForm.css';
 
 class SongForm extends Component {
     constructor(props) {
