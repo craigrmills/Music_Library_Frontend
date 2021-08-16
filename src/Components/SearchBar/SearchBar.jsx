@@ -3,8 +3,8 @@ import './SearchBar.css';
 
 const SearchBar = (props) => {
     return(
-        <div>
-            <span className="visually-hidden">Search Library</span>
+        <div className="container">
+            <span>Search Library: </span>
             <select name="searchOption" id="searchOption">
                 <option value="0">Title</option>
                 <option value="1">Artist</option>

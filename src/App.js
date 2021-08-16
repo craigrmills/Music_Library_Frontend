@@ -4,6 +4,7 @@ import axios from 'axios';
 import MusicTable from './Components/MusicTable/MusicTable';
 import SongForm from './Components/SongForm/SongForm';
 import SearchBar from './Components/SearchBar/SearchBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
     constructor(props) {
