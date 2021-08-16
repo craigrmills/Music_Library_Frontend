@@ -1,11 +1,11 @@
 table {
-  font-family: arial, sans-serif !important;
-  border-collapse: collapse !important;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
 }
 
 td,
 th {
-  border: 1px solid #dddddd !important;
-  text-align: left !important;
-  padding: 8px !important;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }

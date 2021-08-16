@@ -12,13 +12,10 @@ class App extends Component {
         this.state = {
             songs: []
         }
+        this.getSongs = this.getSongs.bind(this);
     }
 
     componentDidMount() {
-        this.getSongs();
-    }
-
-    componentDidUpdate() {
         this.getSongs();
     }
 
@@ -29,13 +26,21 @@ class App extends Component {
         });
     }
 
-    async addSong(song) {
+    addSong = async(song) => {
         let payload = song
-        await axios.post('http://127.0.0.1:8000/music/', payload);   
+        await axios.post('http://127.0.0.1:8000/music/', payload)
+        .then(res => {
+            console.log(res)
+            this.getSongs();
+        }).catch(err => console.log(err))   
     }
 
-    async removeSong(id) {
-        await axios.delete('http://127.0.0.1:8000/music/' + id + '/');
+    removeSong = async(id) => {
+        await axios.delete(`http://127.0.0.1:8000/music/${id}/`)
+        .then(res => {
+            console.log(res)
+            this.getSongs();
+        }).catch(err => console.log(err)) 
     }
 
     searchMusic() {
@@ -46,7 +51,6 @@ class App extends Component {
         tr = table.getElementsByTagName("tr");
         option = document.getElementById("searchOption").value;
       
-
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[option];
           if (td) {

@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 const MusicTable = (props) => {
     return (
         <div className="container">
-            <table id="musicTable">
+            <table id="musicTable" class="table">
                 <tr>
                     <th>Title</th>
                     <th>Artist</th>
