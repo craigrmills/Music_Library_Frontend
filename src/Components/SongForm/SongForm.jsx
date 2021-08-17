@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SongForm.css';
+import {Form, Row, Col, InputGroup, FormControl, Container, Button} from 'react-bootstrap';
 
 class SongForm extends Component {
     constructor(props) {
@@ -43,31 +44,39 @@ class SongForm extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Add New Song</h3>
-                <form onSubmit={this.handleSubmit}>
-                        <label>Title</label>
-                        <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
-                    <div>
-                        <label>Artist</label>
-                        <input type="text" name="artist" value={this.state.artist} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <label>Album</label>
-                        <input type="text" name="album" value={this.state.album} onChange={this.handleChange} />                        </div>
-                    <div>
-                        <label>Genre</label>
-                        <input type="text" name="genre" value={this.state.genre} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <label>Release Date</label>
-                        <input type="text" name="release_date" value={this.state.release_date} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" type="submit">Add Song</button>
-                    </div>
-                </form>
-            </div>            
+            <Container className="bg-secondary pb-3">
+                <Row className="text-center">
+                    <Col></Col>
+                    <Col>
+                    <Form onSubmit={this.handleSubmit}>
+                <h3>Add New Song</h3> 
+                <InputGroup className="mb-3">
+                    <InputGroup.Text>Title:</InputGroup.Text>
+                    <FormControl name="title" value={this.state.title} onChange={this.handleChange} />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text>Artist:</InputGroup.Text>
+                    <FormControl name="artist" value={this.state.artist} onChange={this.handleChange} />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text>Album:</InputGroup.Text>
+                    <FormControl name="album" value={this.state.album} onChange={this.handleChange} />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text>Genre:</InputGroup.Text>
+                    <FormControl name="genre" value={this.state.genre} onChange={this.handleChange} />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text>Release Date:</InputGroup.Text>
+                    <FormControl name="release_date" value={this.state.release_date} onChange={this.handleChange} />
+                </InputGroup>
+                <Button type="submit">Add Song</Button>               
+            </Form> 
+                    </Col>
+                    <Col></Col>
+                </Row>
+              
+            </Container>
         )
     }
 }

@@ -3,7 +3,7 @@ import './MusicTable.css';
 
 const MusicTable = (props) => {
     return (
-        <div className="container">
+        <div className="container bg-secondary pt-5 pb-5">
             <table className="table table-dark">
                 <thead>
                     <tr>
