@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import Styles from './App.module.css';
 import axios from 'axios';
 import MusicTable from './Components/MusicTable/MusicTable';
 import SongForm from './Components/SongForm/SongForm';
@@ -51,6 +51,7 @@ class App extends Component {
     }
 
     filterSongs = (query, field) => {
+        console.log(query)
         let filtered = this.state.songs.filter(function(el) {
             return el[field].toLowerCase().indexOf(query.toLowerCase()) !== -1
         })
@@ -61,10 +62,12 @@ class App extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <SearchBar filterSongs = {this.filterSongs}/>
-                <MusicTable songs={this.state.filteredSongs} removeSong={this.removeSong}/>
-                <SongForm addSong={this.addSong}/>
+            <React.Fragment >
+                <div className={Styles.App}>
+                    <SearchBar filterSongs = {this.filterSongs}/>
+                    <MusicTable songs={this.state.filteredSongs} removeSong={this.removeSong}/>
+                    <SongForm addSong={this.addSong}/>
+                </div>
             </React.Fragment>
         )
     }
