@@ -1,11 +1,10 @@
 import React from 'react';
 import './MusicTable.css';
-import { Button } from 'react-bootstrap';
 
 const MusicTable = (props) => {
     return (
-        <div className="container">
-            <table id="musicTable" class="table">
+        <div>
+            <table id="musicTable">
                 <tr>
                     <th>Title</th>
                     <th>Artist</th>
@@ -21,7 +20,7 @@ const MusicTable = (props) => {
                         <td>{songs.album}</td>
                         <td>{songs.genre}</td>
                         <td>{songs.release_date}</td>
-                        <td><Button className="btn-danger" onClick={() => props.removeSong(songs.id)}>Delete</Button></td>
+                        <td><button className="btn btn-danger" onClick={() => props.removeSong(songs.id)}>Delete</button></td>
                     </tr>
                 ))}
             </table>

@@ -1,28 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './SearchBar.css';
 
-const SearchBar = (props) => {
-    return(
-        <div>
-            <center>
-                <span>Search Library:</span>
-                <select name="searchOption" id="searchOption">
-                    <option value="0">Title</option>
-                    <option value="1">Artist</option>
-                    <option value="2">Album</option>
-                    <option value="3">Genre</option>
-                    <option value="4">Release Date</option>
-                </select>
-                <input 
-                    type="text"
-                    id="myInput"
-                    placeholder="Search..."
-                    name="s" 
-                    onKeyUp={props.searchMusic}
-                />
-            </center>
-        </div>
-    )
+class SearchBar extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchTerm: '',
+            field: 'title'
+        }
+    }
+    
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        },  this.props.filterSongs(this.state.searchTerm, this.state.field));
+       
+    }
+
+    render() {
+        return(
+            <div>
+                <center>
+                    <span>Search Library:</span>
+                    <select name="field" onChange={this.handleChange} >
+                        <option value="title">Title</option>
+                        <option value="artist">Artist</option>
+                        <option value="album">Album</option>
+                        <option value="genre">Genre</option>
+                        <option value="release_date">Release Date</option>
+                    </select>
+                    <input 
+                        type="text"
+                        placeholder="Search..."
+                        name="searchTerm"
+                        onChange={this.handleChange} 
+                    />
+                </center>
+            </div>
+        )
+    }
 }
 
 export default SearchBar;

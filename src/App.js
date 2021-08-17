@@ -10,9 +10,10 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            songs: []
+            songs: [],
+            filteredSongs: [],
         }
-        this.getSongs = this.getSongs.bind(this);
+        this.getSongs = this.getSongs.bind(this)
     }
 
     componentDidMount() {
@@ -22,53 +23,47 @@ class App extends Component {
     async getSongs() {
         let response = await axios.get('http://127.0.0.1:8000/music/')
         this.setState({
-            songs: response.data
+            songs: response.data,
+            filteredSongs: response.data
         });
     }
 
     addSong = async(song) => {
-        let payload = song
-        await axios.post('http://127.0.0.1:8000/music/', payload)
-        .then(res => {
-            console.log(res)
+        try{
+            let response = await axios.post('http://127.0.0.1:8000/music/', song)
+            console.log(response)
             this.getSongs();
-        }).catch(err => console.log(err))   
+        }
+        catch(e){
+            console.log(e)
+        } 
     }
 
     removeSong = async(id) => {
-        await axios.delete(`http://127.0.0.1:8000/music/${id}/`)
-        .then(res => {
-            console.log(res)
+        try{
+            let response = await axios.delete(`http://127.0.0.1:8000/music/${id}/`)
+            console.log(response)
             this.getSongs();
-        }).catch(err => console.log(err)) 
+        }
+        catch(e){
+            console.log(e)
+        }
     }
 
-    searchMusic() {
-        let input, filter, table, tr, td, i, txtValue, option;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("musicTable");
-        tr = table.getElementsByTagName("tr");
-        option = document.getElementById("searchOption").value;
-      
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[option];
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
-          }
-        }
-      }
+    filterSongs = (query, field) => {
+        let filtered = this.state.songs.filter(function(el) {
+            return el[field].toLowerCase().indexOf(query.toLowerCase()) !== -1
+        })
+        this.setState({
+            filteredSongs : filtered
+        })
+    }
 
     render() {
         return (
             <React.Fragment>
-                <SearchBar searchMusic={this.searchMusic}/>
-                <MusicTable songs={this.state.songs} removeSong={this.removeSong}/>
+                <SearchBar filterSongs = {this.filterSongs}/>
+                <MusicTable songs={this.state.filteredSongs} removeSong={this.removeSong}/>
                 <SongForm addSong={this.addSong}/>
             </React.Fragment>
         )
